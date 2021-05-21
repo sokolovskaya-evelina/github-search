@@ -6,6 +6,10 @@ import Repositories from './repositories/Repositories';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../Redux/store';
 import {UserType} from '../../API/api';
+import Empty from '../../common/components/empty/Empty';
+import search from './../../assets/icons/bigSearch.svg'
+import userNotFound from './../../assets/icons/userOutline.svg'
+
 
 type PropsType = {
 
@@ -16,22 +20,23 @@ const Main: React.FC<PropsType> = () => {
     const error = useSelector<AppRootStateType, boolean>(state => state.user.error)
 
     if (user === null) {
-        return <h1>
-        Start Page
-        </h1>
+        return <Empty text={`Start with searching a GitHub user`} icon={search}/>
     } else if (error) {
-        return <h1>Not Found</h1>
+        return <Empty text={'User not found'} icon={userNotFound}/>
     }
     return (
-        <div className={style.mainBlock}>
-            <User photo={user.avatar_url}
-                  name={user.name}
-                  url={user.html_url}
-                  userName={user.login}
-                  followers={user.followers}
-                  following={user.following}/>
-            <Repositories repositoryCount={user.public_repos}/>
+        <div className={style.container}>
+            <div className={style.mainBlock}>
+                <User photo={user.avatar_url}
+                      name={user.name}
+                      url={user.html_url}
+                      userName={user.login}
+                      followers={user.followers}
+                      following={user.following}/>
+                <Repositories userName={user.login} reposCount={user.public_repos}/>
+            </div>
         </div>
+
     );
 };
 

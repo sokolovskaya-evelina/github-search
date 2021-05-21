@@ -3,14 +3,14 @@ import style from './Repository.module.scss'
 
 type PropsType = {
     name: string
-    link: string
+    url: string
     description: string
 }
 const Repository: React.FC<PropsType> = (props) => {
-    const {name, description, link} = props
+    const {name, description, url} = props
     return (
         <div className={style.repoBlock}>
-            <a href={link} className={style.repoLink}>{name}</a>
+            <a target='_blank' href={url} className={style.repoLink}>{name}</a>
             <span className={style.description}>{description}</span>
         </div>
     );

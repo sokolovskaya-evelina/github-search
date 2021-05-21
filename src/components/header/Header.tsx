@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import style from './Header.module.scss'
 import githubIcon from './../../assets/icons/github.svg'
 import {useDispatch} from 'react-redux';
-import {searchUserTC} from '../../Redux/reducer';
+import {getData, setCurrentPage} from '../../Redux/reducer';
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -14,7 +14,8 @@ const Header = () => {
     }
     const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter'){
-            dispatch(searchUserTC(value))
+            dispatch(setCurrentPage(1))
+            dispatch(getData(value))
             setValue('')
         }
     }

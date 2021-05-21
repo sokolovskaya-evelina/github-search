@@ -1,8 +1,11 @@
+.container{
+  height: calc(100vh - 72px);
+}
 .mainBlock {
-  padding: 40px 56px;
-  min-height: 100vh;
+  padding-left: 56px;
+  padding-right: 56px;
+  margin-bottom: 0;
   display: flex;
-  flex-wrap: wrap;
   @media screen and (max-width: 400px){
     padding: 40px 40px;
   }

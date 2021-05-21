@@ -8,8 +8,8 @@ export const repoAPI = {
     getUser(username: string) {
         return instance.get<UserType>(`/${username}`)
     },
-    getRepo(username: string) {
-        return instance.get<Array<RepoType>>(`/${username}/repos`)
+    getRepo(username: string,  currentPage: number = 1,perPage: number = 4) {
+        return instance.get<Array<RepoType>>(`/${username}/repos?per_page=${perPage}&page=${currentPage}`)
     },
 }
 
