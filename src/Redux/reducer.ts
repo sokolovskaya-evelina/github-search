@@ -79,6 +79,7 @@ export const getData = (userName: string, currentPage: number=1, perPage: number
         dispatch(setUser(user.data))
         dispatch(setRepos(repos.data))
         dispatch(setIsFetching(false))
+        dispatch(setCurrentPage(currentPage))
     } catch (e) {
         dispatch(setError(true))
         dispatch(setIsFetching(false))

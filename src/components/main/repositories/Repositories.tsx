@@ -6,27 +6,26 @@ import {AppRootStateType} from '../../../Redux/store';
 import {RepoType} from '../../../API/api';
 import Empty from '../../../common/components/empty/Empty';
 import notFound from './../../../assets/icons/notFound.svg'
-import ReactPaginate from 'react-paginate';
-import prev from './../../../assets/icons/prev.svg'
-import next from './../../../assets/icons/next.svg'
 import {getData} from '../../../Redux/reducer';
+import Pagination from '../../../common/components/Pagination/Pagination';
 
-const Repositories: React.FC<{ reposCount: number, userName: string }> = ({reposCount,userName}) => {
+const Repositories: React.FC<{ reposCount: number, userName: string }> = ({reposCount, userName}) => {
     const dispatch = useDispatch()
     const repos = useSelector<AppRootStateType, Array<RepoType> | []>(state => state.user.repositories)
     const perPage = useSelector<AppRootStateType, number>(state => state.user.perPage)
     const totalReposCount = useSelector<AppRootStateType, number>(state => state.user.totalReposCount)
     const currentPage = useSelector<AppRootStateType, number>(state => state.user.currentPage)
-    const pageCount = Math.ceil(totalReposCount/perPage)
 
-    useEffect(()=>{
+    const pageCount = Math.ceil(totalReposCount / perPage)
+    const firstItemOfRange = 4 * currentPage - 3
+    const lastItemOfRange = firstItemOfRange + repos.length - 1
+
+    useEffect(() => {
         dispatch(getData(userName, currentPage, perPage))
     }, [currentPage])
 
-    const onPageHandler = (item: {selected: number}) => {
-        debugger
-        dispatch(getData(userName, item.selected, perPage))
-        console.log(item.selected)
+    const onPageHandler = (item: { selected: number }) => {
+        dispatch(getData(userName, item.selected + 1, perPage))
     }
 
     return (
@@ -37,16 +36,15 @@ const Repositories: React.FC<{ reposCount: number, userName: string }> = ({repos
                     {repos?.map((repo: RepoType) =>
                         <Repository key={repo.id} description={repo.description} url={repo.html_url} name={repo.name}/>
                     )}
-                    <ReactPaginate previousLabel={''}
-                                   nextLabel={''}
-                                   pageCount={pageCount}
-                                   marginPagesDisplayed={perPage}
-                                   onPageChange={onPageHandler}
-                                   pageRangeDisplayed={2}                  />
+                    <div className={style.paginationBlock}>
+                        <span>{firstItemOfRange}-{lastItemOfRange} of {reposCount} items</span>
+                        <Pagination pageCount={pageCount} perPage={perPage} onPageHandler={onPageHandler}/>
+                    </div>
+
                 </>
                 : <Empty text={'Repository list is empty'} icon={notFound}/>}
         </div>
     );
-};
+}
 
 export default Repositories;

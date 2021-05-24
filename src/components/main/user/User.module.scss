@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   margin-right: 85px;
+  @media screen and (max-width: 1070px){
+    margin-right: 0;
+  }
   .userPhoto {
     width: 280px;
     height: 280px;
@@ -32,6 +35,7 @@
     cursor: pointer;
   }
   .userFollow {
+    white-space: nowrap;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
