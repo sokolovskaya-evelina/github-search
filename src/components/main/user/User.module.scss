@@ -1,60 +1,58 @@
-.userBlock{
+@import "./../../../common/styles/mixins";
+
+.userBlock {
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
   margin-right: 85px;
-  @media screen and (max-width: 1070px){
+
+  @include flex(column, flex-start, flex-start);
+  @media screen and (max-width: 1070px) {
     margin-right: 0;
   }
+
   .userPhoto {
     width: 280px;
     height: 280px;
     border-radius: 50%;
-    @media screen and (max-width: 400px){
+    @media screen and (max-width: 400px) {
       width: 250px;
       height: 250px;
     }
   }
-  .name{
+
+  .name {
     margin-top: 28px;
     margin-bottom: 12px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 130%;
+
+    @include text(normal,600,26px,130%);
     color: #000000;
   }
-  .userName {
-    margin-bottom: 25px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
 
-    color: #0064EB;
+  .userName {
     cursor: pointer;
+    margin-bottom: 25px;
+
+    @include text(normal,normal,18px,22px);
+    text-decoration: none;
+    color: #0064EB;
   }
+
   .userFollow {
     white-space: nowrap;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 150%;
 
+    @include text(normal,400,16px,150%);
     color: #000000;
 
     .followers {
-      width: 24px;
-      height: 24px;
       padding-left: 32px;
       padding-right: 16px;
+
       background-image: url('./../../../assets/icons/shared.svg');
       background-repeat: no-repeat;
     }
+
     .following {
-      width: 24px;
-      height: 24px;
       padding-left: 25px;
+
       background-image: url('./../../../assets/icons/person.svg');
       background-repeat: no-repeat;
     }

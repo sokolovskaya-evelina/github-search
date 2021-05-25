@@ -5,7 +5,7 @@ const SET_ERROR = 'SET_ERROR';
 const ADD_USER = 'ADD_USER';
 const ADD_REPOS = 'ADD_REPOS'
 const SET_IS_FETCHING = 'SET_IS_FETCHING';
-const SET_CURRENT_PAGE='SET_CURRENT_PAGE'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
 let initialState = {
     isFetching: false,
@@ -32,13 +32,13 @@ const reducer = (state = initialState, action: ActionsTypes): initialStateType =
             return {
                 ...state,
                 user: action.payload,
-                totalReposCount: action.payload.public_repos
+                totalReposCount: action.payload.public_repos,
             }
         }
         case ADD_REPOS: {
             return {
                 ...state,
-                repositories: action.payload
+                repositories: action.payload,
             }
         }
         case SET_ERROR: {
@@ -70,16 +70,18 @@ export const setCurrentPage = (page: number) => ({type: SET_CURRENT_PAGE, payloa
 const setError = (value: boolean) => ({type: SET_ERROR, payload: value} as const)
 const setIsFetching = (value: boolean) => ({type: SET_IS_FETCHING, payload: value} as const)
 
-export const getData = (userName: string, currentPage: number=1, perPage: number=4) => async (dispatch: Dispatch) => {
+export const getData = (userName: string, currentPage: number = 1, perPage: number = 4) => async (dispatch: Dispatch) => {
     try {
         dispatch(setError(false))
         dispatch(setIsFetching(true))
-        const user = await repoAPI.getUser(userName)
-        const repos = await repoAPI.getRepo(userName, currentPage, perPage)
-        dispatch(setUser(user.data))
-        dispatch(setRepos(repos.data))
-        dispatch(setIsFetching(false))
+        let results = await Promise.all([
+            repoAPI.getUser(userName),
+            repoAPI.getRepo(userName, currentPage, perPage)
+        ])
+        dispatch(setUser(results[0].data))
+        dispatch(setRepos(results[1].data))
         dispatch(setCurrentPage(currentPage))
+        dispatch(setIsFetching(false))
     } catch (e) {
         dispatch(setError(true))
         dispatch(setIsFetching(false))

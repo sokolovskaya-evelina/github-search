@@ -6,7 +6,6 @@ import {getData, setCurrentPage} from '../../Redux/reducer';
 
 const Header = () => {
     const dispatch = useDispatch()
-
     const [value, setValue] = useState<string>('')
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>)=>{

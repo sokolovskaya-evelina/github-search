@@ -1,30 +1,32 @@
+@import "./../../../common/styles/mixins";
+@import "./../../../common/styles/variables";
+
 .repositoryBlock {
   margin-top: 40px;
+
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  @media screen and (max-width: 1070px){
+  @include flex(column, flex-start, flex-start);
+  @media screen and (max-width: 1070px) {
     align-self: flex-start;
     width: 100%;
   }
 
   .title {
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 130%;
+    @include text(normal, 600, 32px, 130%);
     color: #000000;
   }
 
   .paginationBlock {
     display: flex;
-    justify-content: flex-end;
     align-items: baseline;
+    align-self: flex-end;
 
     color: #808080;
 
-    span{
+    span {
       margin-right: 16px;
     }
+
     @media screen and (max-width: 985px) {
       flex-direction: column;
       justify-content: center;
