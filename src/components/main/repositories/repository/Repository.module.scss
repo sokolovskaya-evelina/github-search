@@ -1,26 +1,29 @@
+@import "./../../../../common/styles/variables";
+@import "./../../../../common/styles/mixins";
+
 .repoBlock {
   width: 100%;
-  display: flex;
-  flex-direction: column;
+
   padding: 24px 32px;
+  margin-bottom: 24px;
+
+  @include flex(column, flex-start, flex-start);
+
   background: #FFFFFF;
   border-radius: 6px;
-  margin-bottom: 24px;
 
   .description {
     margin-top: 16px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
+
+    @include text(normal, normal, 16px, 19px);
     color: #000000;
   }
 
   .repoLink {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-
+    @include text(normal, 500, 24px, 29px);
     color: #0064EB;
+    @media screen and (max-width: 450px) {
+      @include text(normal, 500, 20px, 23px);
+    }
   }
 }

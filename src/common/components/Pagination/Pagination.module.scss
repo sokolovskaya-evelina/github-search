@@ -1,25 +1,27 @@
+@import "./../../../common/styles/mixins";
+@import "./../../../common/styles/variables";
+
 .paginationContainer {
+  margin-left: -40px;
   height: 24px;
   list-style: none;
-  margin-left: -40px;
-  display: flex;
-  justify-content: center;
+
+  @include flex(row, center, flex-start);
 
   .prevBtn, .nextBtn {
-    display: flex;
-    justify-content: center;
     width: 24px;
     height: 24px;
-
     cursor: pointer;
+
+    @include flex(row, center, flex-start);
   }
 
   .nextBtn:hover > a > svg > path {
-    stroke: #0064EB;
+    stroke: $primaryColor;
   }
 
   .prevBtn:hover > a > svg > path {
-    fill: #0064EB;
+    fill: $primaryColor;
   }
 
   .breakBtn {
@@ -33,18 +35,11 @@
   }
 
   .active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 21px;
-    color: #FFFFFF;
-
     padding: 2px 6px;
-
-    background: #0064EB;
+    @include flex(row, center, center);
+    @include text(normal, normal, 14px, 21px);
+    color: #FFFFFF;
+    background: $primaryColor;
     border-radius: 3px;
   }
 }

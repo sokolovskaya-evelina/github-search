@@ -7,7 +7,6 @@
     padding-left: 56px;
     padding-right: 56px;
     margin-bottom: 0;
-
     @include flex(row, flex-start, flex-start);
     @media screen and (max-width: 400px) {
       padding: 20px 20px;

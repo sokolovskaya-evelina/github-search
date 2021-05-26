@@ -23,6 +23,10 @@ const Main = () => {
         return <Empty text={`Start with searching a GitHub user`} icon={search}/>
     }
 
+    // if(isFetching) {
+    //     return <Loader/>
+    // }
+
     return (
         <div className={style.container}>
             <div className={style.mainBlock}>

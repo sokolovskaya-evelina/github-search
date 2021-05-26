@@ -3,9 +3,8 @@
 
 .repositoryBlock {
   margin-top: 40px;
-
-  flex-grow: 1;
   @include flex(column, flex-start, flex-start);
+  flex-grow: 1;
   @media screen and (max-width: 1070px) {
     align-self: flex-start;
     width: 100%;
@@ -17,20 +16,16 @@
   }
 
   .paginationBlock {
-    display: flex;
-    align-items: baseline;
+    @include flex(row, flex-end,baseline);
     align-self: flex-end;
-
-    color: #808080;
+    color: $grey;
 
     span {
       margin-right: 16px;
     }
 
     @media screen and (max-width: 985px) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include flex(column, center, center);
     }
   }
 }

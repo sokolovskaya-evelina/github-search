@@ -1,32 +1,28 @@
+@import "./../../../common/styles/variables";
+@import "./../../../common/styles/mixins";
+
 .emptyBlock {
-  /*
+  width: 100%;
   min-height: calc(100vh - 72px);
-  */
-  min-height: calc(100vh - 72px);
-  display: flex;
-  justify-content: center;
+  @include flex(row, center, flex-start);
+
   .container {
     width: 210px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex(column, flex-start, center);
     align-self: center;
     text-align: center;
 
-    .icon{
+    .icon {
       width: 110px;
       height: 110px;
-      background-size:auto;
+      background-size: auto;
       background-position: center;
       background-repeat: no-repeat;
     }
-    .text{
-      font-style: normal;
-      font-weight: normal;
-      font-size: 22px;
-      line-height: 140%;
 
-      color: #808080;
+    .text {
+      @include text(normal, normal, 22px, 140%);
+      color: $grey;
     }
   }
 }
