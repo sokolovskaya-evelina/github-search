@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import style from './Repositories.module.scss'
 import Repository from './repository/Repository';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../Redux/store';
 import {RepoType} from '../../../API/api';
 import Empty from '../../../common/components/empty/Empty';
 import notFound from './../../../assets/icons/notFound.svg'
 import {getData} from '../../../Redux/reducer';
 import Pagination from '../../../common/components/Pagination/Pagination';
 import Loader from '../../../common/components/Loader/Loader';
+import {selectCurrentPage, selectIsFetching, selectPerPage, selectRepos, selectTotalReposCount} from './selectors';
 
 type PropsType = {
     reposCount: number
@@ -17,19 +17,21 @@ type PropsType = {
 
 const Repositories: React.FC<PropsType> = React.memo(({reposCount, userName}) => {
     const dispatch = useDispatch()
-    const repos = useSelector<AppRootStateType, Array<RepoType> | []>(state => state.user.repositories)
-    const perPage = useSelector<AppRootStateType, number>(state => state.user.perPage)
-    const totalReposCount = useSelector<AppRootStateType, number>(state => state.user.totalReposCount)
-    const currentPage = useSelector<AppRootStateType, number>(state => state.user.currentPage)
-    const isFetching = useSelector<AppRootStateType, boolean>(state => state.user.isFetching)
+    const repos = useSelector(selectRepos)
+    const perPage = useSelector(selectPerPage)
+    const totalReposCount = useSelector(selectTotalReposCount)
+    const currentPage = useSelector(selectCurrentPage)
+    const isFetching = useSelector(selectIsFetching)
 
     const pageCount = Math.ceil(totalReposCount / perPage)
     const firstItemOfRange = 4 * currentPage - 3
     const lastItemOfRange = firstItemOfRange + repos.length - 1
 
-    const onPageHandler = (item: { selected: number }) => {
-        dispatch(getData(userName, item.selected + 1, perPage))
-    }
+    const onPageHandler = useCallback((item: { selected: number }) => {
+        if (currentPage !== item.selected+1){
+            dispatch(getData(userName, item.selected + 1, perPage))
+        }
+    }, [userName, currentPage, perPage, dispatch])
 
     return (
         <div className={style.repositoryBlock}>

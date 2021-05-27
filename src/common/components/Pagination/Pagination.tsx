@@ -3,8 +3,8 @@ import style from './Pagination.module.scss'
 import ReactPaginate from 'react-paginate';
 
 type PropsType  = {
-    pageCount: number,
-    perPage: number,
+    pageCount: number
+    perPage: number
     onPageHandler: (item: { selected: number })=>void
 }
 const Pagination:React.FC<PropsType> = React.memo( ({pageCount, perPage,onPageHandler}) => {
@@ -12,6 +12,7 @@ const Pagination:React.FC<PropsType> = React.memo( ({pageCount, perPage,onPageHa
                             xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1L6 6L1 11" stroke="#808080" strokeWidth="2"/>
     </svg>
+
     const previousButton = <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" clipRule="evenodd"
               d="M3.41412 6.00008L7.70701 1.70718L6.2928 0.292969L0.585693 6.00008L6.2928 11.7072L7.70701 10.293L3.41412 6.00008Z"
@@ -23,8 +24,8 @@ const Pagination:React.FC<PropsType> = React.memo( ({pageCount, perPage,onPageHa
     </svg>
 
     return (
-            <ReactPaginate initialPage={0}
-                           pageCount={pageCount}
+
+            <ReactPaginate pageCount={pageCount}
                            marginPagesDisplayed={perPage}
                            onPageChange={onPageHandler}
                            pageRangeDisplayed={1}

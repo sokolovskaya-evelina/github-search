@@ -12,7 +12,7 @@ type PropsType = {
 
 const User: React.FC<PropsType> = React.memo( (props) => {
     const {userName, name, followers, following, photo, url} = props
-    const currentFollowers = followers > 1000 ? (followers/1000).toFixed(1).toString() + 'k' : followers
+    const currentFollowers = followers >= 1000 ? (followers/1000).toFixed(1).toString() + 'k' : followers
 
     return (
         <div className={style.userBlock}>
@@ -24,7 +24,7 @@ const User: React.FC<PropsType> = React.memo( (props) => {
                 <span className={style.following}>{following} following</span>
             </div>
         </div>
-    );
+    )
 })
 
 export default User;

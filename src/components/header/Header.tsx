@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
+import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from 'react'
 import style from './Header.module.scss'
 import githubIcon from './../../assets/icons/github.svg'
 import {useDispatch} from 'react-redux';
@@ -8,16 +8,16 @@ const Header = () => {
     const dispatch = useDispatch()
     const [value, setValue] = useState<string>('')
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>)=>{
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-    const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-        if(e.key === 'Enter'){
-            dispatch(setCurrentPage(1))
+    const handleKeyPress =useCallback( (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
             dispatch(getData(value))
+            dispatch(setCurrentPage(1))
             setValue('')
         }
-    }
+    },[value, setValue,])
 
     return (
         <header className={style.header}>
