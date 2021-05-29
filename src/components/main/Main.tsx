@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 import Empty from '../../common/components/empty/Empty';
 import search from './../../assets/icons/bigSearch.svg'
 import userNotFound from './../../assets/icons/userOutline.svg'
-import {selectError, selectIsFetching, selectUser} from './repositories/selectors';
+import {selectError, selectIsFetching, selectUser} from '../../Redux/selectors';
 import Loader from '../../common/components/Loader/Loader';
 
 const Main = () => {

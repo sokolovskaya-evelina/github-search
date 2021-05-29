@@ -1,4 +1,4 @@
-import {AppRootStateType} from '../../../Redux/store';
+import {AppRootStateType} from './store';
 
 export const selectRepos =(state: AppRootStateType)=>state.user.repositories
 export const selectPerPage =(state: AppRootStateType)=>state.user.perPage

@@ -8,7 +8,13 @@ import notFound from './../../../assets/icons/notFound.svg'
 import {getData} from '../../../Redux/reducer';
 import Pagination from '../../../common/components/Pagination/Pagination';
 import Loader from '../../../common/components/Loader/Loader';
-import {selectCurrentPage, selectIsFetching, selectPerPage, selectRepos, selectTotalReposCount} from './selectors';
+import {
+    selectCurrentPage,
+    selectIsFetching,
+    selectPerPage,
+    selectRepos,
+    selectTotalReposCount
+} from '../../../Redux/selectors';
 
 type PropsType = {
     reposCount: number
@@ -28,7 +34,7 @@ const Repositories: React.FC<PropsType> = React.memo(({reposCount, userName}) =>
     const lastItemOfRange = firstItemOfRange + repos.length - 1
 
     const onPageHandler = useCallback((item: { selected: number }) => {
-        if (currentPage !== item.selected+1){
+        if (currentPage !== item.selected + 1) {
             dispatch(getData(userName, item.selected + 1, perPage))
         }
     }, [userName, currentPage, perPage, dispatch])

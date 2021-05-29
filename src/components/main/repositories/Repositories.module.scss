@@ -3,7 +3,7 @@
 
 .repositoryBlock {
   margin-top: 40px;
-  @include flex(column, flex-start, flex-start);
+  @include flex(column,space-around, flex-start, );
   flex-grow: 1;
   @media screen and (max-width: 1070px) {
     align-self: flex-start;

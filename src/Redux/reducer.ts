@@ -17,7 +17,7 @@ let initialState = {
     currentPage: 1,
 }
 
-type initialStateType = typeof initialState
+export type initialStateType = typeof initialState
 type ActionsTypes =
     ReturnType<typeof setUser>
     | ReturnType<typeof setError>
@@ -64,11 +64,11 @@ const reducer = (state = initialState, action: ActionsTypes): initialStateType =
     }
 }
 
-const setUser = (userData: UserType) => ({type: ADD_USER, payload: userData} as const)
-const setRepos = (reposData: Array<RepoType>) => ({type: ADD_REPOS, payload: reposData} as const)
+export const setUser = (userData: UserType) => ({type: ADD_USER, payload: userData} as const)
+export const setRepos = (reposData: Array<RepoType>) => ({type: ADD_REPOS, payload: reposData} as const)
 export const setCurrentPage = (page: number) => ({type: SET_CURRENT_PAGE, payload: page} as const)
-const setError = (value: boolean) => ({type: SET_ERROR, payload: value} as const)
-const setIsFetching = (value: boolean) => ({type: SET_IS_FETCHING, payload: value} as const)
+export const setError = (value: boolean) => ({type: SET_ERROR, payload: value} as const)
+export const setIsFetching = (value: boolean) => ({type: SET_IS_FETCHING, payload: value} as const)
 
 export const getData = (userName: string, currentPage: number = 1, perPage: number = 4) => async (dispatch: Dispatch) => {
     try {
