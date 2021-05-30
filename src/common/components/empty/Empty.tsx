@@ -10,6 +10,7 @@ const Empty: React.FC<PropsType> = ({text, icon}) => {
     const styles = {
         backgroundImage: `url(${icon})`
     }
+
     return (
         <div className={style.emptyBlock}>
             <div className={style.container}>

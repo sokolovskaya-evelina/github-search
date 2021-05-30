@@ -11,13 +11,13 @@ const Header = () => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-    const handleKeyPress =useCallback( (e: KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyPress = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             dispatch(getData(value))
             dispatch(setCurrentPage(1))
             setValue('')
         }
-    },[value, setValue,dispatch])
+    }, [value, setValue, dispatch])
 
     return (
         <header className={style.header}>

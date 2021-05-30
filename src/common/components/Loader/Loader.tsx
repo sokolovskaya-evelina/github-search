@@ -7,8 +7,6 @@ const Loader = () => {
             <div className={style.fetching}>
             </div>
         </div>
-
-
     );
 };
 

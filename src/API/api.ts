@@ -7,11 +7,11 @@ const instance = axios.create({
 export const repoAPI = {
     getUser(username: string) {
         return instance.get<UserType>(`/${username}`)
-            .then(res=>res.data)
+            .then(res => res.data)
     },
-    getRepo(username: string,  currentPage: number = 1,perPage: number = 4) {
+    getRepo(username: string, currentPage: number = 1, perPage: number = 4) {
         return instance.get<Array<RepoType>>(`/${username}/repos?per_page=${perPage}&page=${currentPage}`)
-            .then(res=>res.data)
+            .then(res => res.data)
     },
 }
 

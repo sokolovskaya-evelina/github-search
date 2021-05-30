@@ -1,12 +1,4 @@
-import reducer, {
-    getData,
-    initialStateType,
-    setCurrentPage,
-    setError,
-    setIsFetching,
-    setRepos,
-    setUser
-} from './reducer';
+import reducer, {initialStateType, setCurrentPage, setError, setIsFetching, setRepos, setUser} from './reducer';
 
 export let startState: initialStateType
 

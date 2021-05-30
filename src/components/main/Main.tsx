@@ -12,9 +12,6 @@ const Main = () => {
     const user = useSelector(selectUser)
     const error = useSelector(selectError)
 
-    if (error) {
-        return <Empty text={'User not found'} icon={userNotFound}/>
-    }
     if (user === null) {
         return <Empty text={`Start with searching a GitHub user`} icon={search}/>
     }
@@ -22,6 +19,7 @@ const Main = () => {
     return (
         <div className={style.container}>
             <div className={style.mainBlock}>
+                {error && <Empty text={'User not found'} icon={userNotFound}/>}
                 <User photo={user.avatar_url}
                       name={user.name}
                       url={user.html_url}
