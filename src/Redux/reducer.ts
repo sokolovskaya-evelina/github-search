@@ -78,8 +78,8 @@ export const getData = (userName: string, currentPage: number = 1, perPage: numb
             repoAPI.getUser(userName),
             repoAPI.getRepo(userName, currentPage, perPage)
         ])
-        dispatch(setUser(results[0].data))
-        dispatch(setRepos(results[1].data))
+        dispatch(setUser(results[0]))
+        dispatch(setRepos(results[1]))
         dispatch(setCurrentPage(currentPage))
         dispatch(setIsFetching(false))
     } catch (e) {
