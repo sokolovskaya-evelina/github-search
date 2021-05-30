@@ -5,10 +5,11 @@ import ReactPaginate from 'react-paginate';
 type PropsType = {
     pageCount: number
     perPage: number
+    currentPage: number
     onPageHandler: (item: { selected: number }) => void
 }
 
-const Pagination: React.FC<PropsType> = React.memo(({pageCount, perPage, onPageHandler}) => {
+const Pagination: React.FC<PropsType> = React.memo(({pageCount, perPage, onPageHandler, currentPage}) => {
     const nextButton = <svg width="8" height="12" viewBox="0 0 8 12" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1L6 6L1 11" stroke="#808080" strokeWidth="2"/>
@@ -27,8 +28,8 @@ const Pagination: React.FC<PropsType> = React.memo(({pageCount, perPage, onPageH
     </svg>
 
     return (
-
-        <ReactPaginate pageCount={pageCount}
+        <ReactPaginate forcePage={currentPage - 1}
+                       pageCount={pageCount}
                        marginPagesDisplayed={perPage}
                        onPageChange={onPageHandler}
                        pageRangeDisplayed={1}

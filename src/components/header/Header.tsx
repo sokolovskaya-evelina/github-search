@@ -17,7 +17,7 @@ const Header = () => {
             dispatch(setCurrentPage(1))
             setValue('')
         }
-    },[value, setValue,])
+    },[value, setValue,dispatch])
 
     return (
         <header className={style.header}>

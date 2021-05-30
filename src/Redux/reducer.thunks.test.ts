@@ -43,7 +43,7 @@ beforeEach(() => {
     }
 })
 test('success thunk', async () => {
-    const thunk = getData('evi')
+    const thunk = getData('hello')
     const dispatchMock = jest.fn()
 
     await thunk(dispatchMock)
@@ -54,4 +54,3 @@ test('success thunk', async () => {
     expect(dispatchMock).toHaveBeenNthCalledWith(5, setCurrentPage(1))
     expect(dispatchMock).toHaveBeenNthCalledWith(6, setIsFetching(false))
 });
-

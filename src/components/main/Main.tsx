@@ -6,13 +6,11 @@ import {useSelector} from 'react-redux';
 import Empty from '../../common/components/empty/Empty';
 import search from './../../assets/icons/bigSearch.svg'
 import userNotFound from './../../assets/icons/userOutline.svg'
-import {selectError, selectIsFetching, selectUser} from '../../Redux/selectors';
-import Loader from '../../common/components/Loader/Loader';
+import {selectError, selectUser} from '../../Redux/selectors';
 
 const Main = () => {
     const user = useSelector(selectUser)
     const error = useSelector(selectError)
-    const isFetching = useSelector(selectIsFetching)
 
     if (error) {
         return <Empty text={'User not found'} icon={userNotFound}/>
@@ -21,10 +19,9 @@ const Main = () => {
         return <Empty text={`Start with searching a GitHub user`} icon={search}/>
     }
 
-
     return (
         <div className={style.container}>
-             <div className={style.mainBlock}>
+            <div className={style.mainBlock}>
                 <User photo={user.avatar_url}
                       name={user.name}
                       url={user.html_url}

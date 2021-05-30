@@ -49,8 +49,7 @@ const Repositories: React.FC<PropsType> = React.memo(({reposCount, userName}) =>
                     )}
                     <div className={style.paginationBlock}>
                         <span>{firstItemOfRange}-{lastItemOfRange} of {reposCount} items</span>
-                        <Pagination pageCount={pageCount} perPage={perPage} onPageHandler={onPageHandler}/>
-                        {/*{repos.length<=4 ? '' : <Pagination pageCount={pageCount} perPage={perPage} onPageHandler={onPageHandler}/>}*/}
+                        <Pagination currentPage={currentPage} pageCount={pageCount} perPage={perPage} onPageHandler={onPageHandler}/>
                     </div>
                 </>
                 : <Empty text={'Repository list is empty'} icon={notFound}/>}
